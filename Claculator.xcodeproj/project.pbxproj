@@ -35,16 +35,6 @@
 			path = Claculator;
 			sourceTree = "<group>";
 		};
-		47F77E2C2D5E198000E91976 /* ClaculatorTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ClaculatorTests;
-			sourceTree = "<group>";
-		};
-		47F77E362D5E198000E91976 /* ClaculatorUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ClaculatorUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				47F77E1A2D5E197D00E91976 /* Claculator */,
-				47F77E2C2D5E198000E91976 /* ClaculatorTests */,
-				47F77E362D5E198000E91976 /* ClaculatorUITests */,
 				47F77E192D5E197D00E91976 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				47F77E2B2D5E198000E91976 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				47F77E2C2D5E198000E91976 /* ClaculatorTests */,
-			);
 			name = ClaculatorTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				47F77E352D5E198000E91976 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				47F77E362D5E198000E91976 /* ClaculatorUITests */,
 			);
 			name = ClaculatorUITests;
 			packageProductDependencies = (
