@@ -6,27 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		47F77E2A2D5E198000E91976 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47F77E102D5E197D00E91976 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 47F77E172D5E197D00E91976;
-			remoteInfo = Claculator;
-		};
-		47F77E342D5E198000E91976 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47F77E102D5E197D00E91976 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 47F77E172D5E197D00E91976;
-			remoteInfo = Claculator;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		47F77E182D5E197D00E91976 /* Claculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Claculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		47F77E292D5E198000E91976 /* ClaculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClaculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		47F77E332D5E198000E91976 /* ClaculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClaculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -39,20 +20,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		47F77E152D5E197D00E91976 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47F77E262D5E198000E91976 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47F77E302D5E198000E91976 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -74,8 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				47F77E182D5E197D00E91976 /* Claculator.app */,
-				47F77E292D5E198000E91976 /* ClaculatorTests.xctest */,
-				47F77E332D5E198000E91976 /* ClaculatorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,46 +70,6 @@
 			productReference = 47F77E182D5E197D00E91976 /* Claculator.app */;
 			productType = "com.apple.product-type.application";
 		};
-		47F77E282D5E198000E91976 /* ClaculatorTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 47F77E402D5E198000E91976 /* Build configuration list for PBXNativeTarget "ClaculatorTests" */;
-			buildPhases = (
-				47F77E252D5E198000E91976 /* Sources */,
-				47F77E262D5E198000E91976 /* Frameworks */,
-				47F77E272D5E198000E91976 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				47F77E2B2D5E198000E91976 /* PBXTargetDependency */,
-			);
-			name = ClaculatorTests;
-			packageProductDependencies = (
-			);
-			productName = ClaculatorTests;
-			productReference = 47F77E292D5E198000E91976 /* ClaculatorTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		47F77E322D5E198000E91976 /* ClaculatorUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 47F77E432D5E198000E91976 /* Build configuration list for PBXNativeTarget "ClaculatorUITests" */;
-			buildPhases = (
-				47F77E2F2D5E198000E91976 /* Sources */,
-				47F77E302D5E198000E91976 /* Frameworks */,
-				47F77E312D5E198000E91976 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				47F77E352D5E198000E91976 /* PBXTargetDependency */,
-			);
-			name = ClaculatorUITests;
-			packageProductDependencies = (
-			);
-			productName = ClaculatorUITests;
-			productReference = 47F77E332D5E198000E91976 /* ClaculatorUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -157,14 +82,6 @@
 				TargetAttributes = {
 					47F77E172D5E197D00E91976 = {
 						CreatedOnToolsVersion = 16.2;
-					};
-					47F77E282D5E198000E91976 = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 47F77E172D5E197D00E91976;
-					};
-					47F77E322D5E198000E91976 = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 47F77E172D5E197D00E91976;
 					};
 				};
 			};
@@ -183,28 +100,12 @@
 			projectRoot = "";
 			targets = (
 				47F77E172D5E197D00E91976 /* Claculator */,
-				47F77E282D5E198000E91976 /* ClaculatorTests */,
-				47F77E322D5E198000E91976 /* ClaculatorUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		47F77E162D5E197D00E91976 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47F77E272D5E198000E91976 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47F77E312D5E198000E91976 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -221,34 +122,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		47F77E252D5E198000E91976 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47F77E2F2D5E198000E91976 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		47F77E2B2D5E198000E91976 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 47F77E172D5E197D00E91976 /* Claculator */;
-			targetProxy = 47F77E2A2D5E198000E91976 /* PBXContainerItemProxy */;
-		};
-		47F77E352D5E198000E91976 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 47F77E172D5E197D00E91976 /* Claculator */;
-			targetProxy = 47F77E342D5E198000E91976 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		47F77E3B2D5E198000E91976 /* Debug */ = {
@@ -374,6 +248,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Claculator/Preview Content\"";
+				DEVELOPMENT_TEAM = 4Z6G7M8P7C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -411,6 +286,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Claculator/Preview Content\"";
+				DEVELOPMENT_TEAM = 4Z6G7M8P7C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -439,92 +315,6 @@
 			};
 			name = Release;
 		};
-		47F77E412D5E198000E91976 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.podichetty.ClaculatorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Claculator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Claculator";
-				XROS_DEPLOYMENT_TARGET = 2.2;
-			};
-			name = Debug;
-		};
-		47F77E422D5E198000E91976 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.podichetty.ClaculatorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Claculator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Claculator";
-				XROS_DEPLOYMENT_TARGET = 2.2;
-			};
-			name = Release;
-		};
-		47F77E442D5E198000E91976 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.podichetty.ClaculatorUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = Claculator;
-				XROS_DEPLOYMENT_TARGET = 2.2;
-			};
-			name = Debug;
-		};
-		47F77E452D5E198000E91976 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.podichetty.ClaculatorUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = Claculator;
-				XROS_DEPLOYMENT_TARGET = 2.2;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -542,24 +332,6 @@
 			buildConfigurations = (
 				47F77E3E2D5E198000E91976 /* Debug */,
 				47F77E3F2D5E198000E91976 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		47F77E402D5E198000E91976 /* Build configuration list for PBXNativeTarget "ClaculatorTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47F77E412D5E198000E91976 /* Debug */,
-				47F77E422D5E198000E91976 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		47F77E432D5E198000E91976 /* Build configuration list for PBXNativeTarget "ClaculatorUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47F77E442D5E198000E91976 /* Debug */,
-				47F77E452D5E198000E91976 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
