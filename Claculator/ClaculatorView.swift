@@ -65,9 +65,13 @@ struct ClaculatorView: View {
     @State private var levelHighScores: [Int: Int] = [:]
     @State private var showLevelSelector: Bool = false
     
+    // These properties are now persisted
     @State private var highestUnlockedLevel: Int = 0
     
-    // Levels
+    // NEW: State variable to show the easter egg alert
+    @State private var showEasterEggAlert: Bool = false
+    
+    // Levels from your external Levels.swift file
     let levels = gameLevels
     
     let buttons: [[CalcButton]] = [
@@ -88,7 +92,7 @@ struct ClaculatorView: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
-                    // New Level Info positioned at the top:
+                    // Level Info positioned at the top:
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Level \(currentLevelIndex + 1)")
@@ -150,42 +154,78 @@ struct ClaculatorView: View {
                         .padding(.bottom, 3)
                     }
                 }
-                .alert(isPresented: $showLevelComplete) {
-                    Alert(
-                        title: Text("Level Complete!"),
-                        message: Text("You reached the target in \(movesCount) moves."),
-                        dismissButton: .default(Text("Next Level")) {
-                            nextLevel()
+                .alert(isPresented: Binding(
+                    get: { showLevelComplete || showEasterEggAlert },
+                    set: { newValue in
+                        if !newValue {
+                            showLevelComplete = false
+                            showEasterEggAlert = false
                         }
-                    )
+                    }
+                )) {
+                    if showEasterEggAlert {
+                        return Alert(
+                            title: Text("Easter Egg Found!"),
+                            message: Text("You have unlocked every level!"),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    } else {
+                        return Alert(
+                            title: Text("Level Complete!"),
+                            message: Text("You reached the target in \(movesCount) moves."),
+                            dismissButton: .default(Text("Next Level")) {
+                                nextLevel()
+                            }
+                        )
+                    }
                 }
+
             }
-            // No toolbar items (Reset / Select removed)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { }
-            // The sheet for level selection
+            // The sheet for level selection, now with a reset option at the bottom.
             .sheet(isPresented: $showLevelSelector) {
                 VStack {
                     Text("Select a Level")
                         .font(.headline)
                         .padding()
                     
-                    List(0..<levels.count, id: \.self) { idx in
-                        let isLocked = idx > highestUnlockedLevel
+                    List {
+                        ForEach(0..<levels.count, id: \.self) { idx in
+                            let isLocked = idx > highestUnlockedLevel
+                            
+                            Button("Level \(idx + 1)") {
+                                if !isLocked {
+                                    currentLevelIndex = idx
+                                    showLevelSelector = false
+                                    resetCalculatorState()
+                                }
+                            }
+                            .disabled(isLocked)
+                            .foregroundColor(isLocked ? .gray : .blue)
+                        }
                         
-                        Button("Level \(idx + 1)") {
-                            if !isLocked {
-                                currentLevelIndex = idx
-                                showLevelSelector = false
-                                resetCalculatorState()
+                        // Reset Progress option
+                        Button(action: {
+                            resetAllProgress()
+                            showLevelSelector = false
+                        }) {
+                            HStack {
+                                Text("Reset Progress")
+                                    .foregroundColor(.red)
                             }
                         }
-                        .disabled(isLocked)
-                        .foregroundColor(isLocked ? .gray : .blue)
                     }
                 }
                 .presentationDetents([.medium, .large])
             }
+        }
+        .onAppear(perform: loadProgress)
+        .onChange(of: highestUnlockedLevel) { newValue, oldValue in
+            saveProgress()
+        }
+        .onChange(of: levelHighScores) { newValue, oldValue in
+            saveProgress()
         }
     }
     
@@ -193,7 +233,17 @@ struct ClaculatorView: View {
     // MARK: - Tap Handler
     // ------------------------------
     func didTap(button: CalcButton) {
-        movesCount += 1
+        if button != .negative && button != .percent {
+            movesCount += 1
+        }
+        
+        // Check for easter egg: if user entered "0.0000000" and taps "="
+        if button == .equal && value == "0.0000000" {
+            highestUnlockedLevel = levels.count - 1
+            resetCalculatorState()
+            showEasterEggAlert = true
+            return
+        }
         
         // Figure out the real (mapped) button behind the scenes
         let mapping = fullMapping(upTo: currentLevelIndex)
@@ -206,39 +256,23 @@ struct ClaculatorView: View {
         }
         
         switch realButton {
-            
         case .decimal:
-            // Show the pressed decimal on the display, but logic uses 'realButton'
             if !value.contains(".") {
-                // Display the button the user physically pressed
                 updateExpression(with: button)
                 value += "."
             }
-            
         case .add, .subtract, .mutliply, .divide:
-            // Show the pressed operation on the display
             updateExpression(with: button)
             handleOperationButton(realButton)
-            
         case .equal:
-            // Show '=' pressed (or ignore in expression) and do logic
-            // If you want '=' to appear in expression, do updateExpression(with: button) here
             handleOperationButton(realButton)
-            
         case .clear:
-            // AC resets everything
             resetCalculatorState()
-            
         case .percent:
-            // Show the level selector
             showLevelSelector = true
-            
         case .negative:
-            // Not implemented
             break
-            
         default:
-            // It's a digit. Display the pressed digit, but store the mapped value
             updateExpression(with: button)
             if value == "0" {
                 value = realButton.rawValue
@@ -252,7 +286,6 @@ struct ClaculatorView: View {
     // MARK: - Expression Display
     // ------------------------------
     private func updateExpression(with displayedButton: CalcButton) {
-        // This function always uses the physically pressed button (not mapped).
         switch displayedButton {
         case .add, .subtract, .mutliply, .divide:
             if expression == "0" {
@@ -261,7 +294,6 @@ struct ClaculatorView: View {
                 expression += displayedButton.rawValue
             }
         case .equal:
-            // If you want '=' to show, add it here.
             break
         case .clear:
             expression = "0"
@@ -274,7 +306,6 @@ struct ClaculatorView: View {
                 }
             }
         default:
-            // Digits
             if expression == "0" {
                 expression = displayedButton.rawValue
             } else {
@@ -329,7 +360,6 @@ struct ClaculatorView: View {
                 result = Double(value) ?? 0.0
             }
             
-            // Format: if it's whole, remove ".0"
             let resultString: String
             if result.truncatingRemainder(dividingBy: 1) == 0 {
                 resultString = String(format: "%.0f", result)
@@ -407,5 +437,36 @@ struct ClaculatorView: View {
     
     func buttonHeight() -> CGFloat {
         return (UIScreen.main.bounds.width - (5 * 12)) / 4
+    }
+    
+    // ------------------------------
+    // MARK: - Persistence
+    // ------------------------------
+    private func saveProgress() {
+        let defaults = UserDefaults.standard
+        defaults.set(highestUnlockedLevel, forKey: "highestUnlockedLevel")
+        if let data = try? JSONEncoder().encode(levelHighScores) {
+            defaults.set(data, forKey: "levelHighScores")
+        }
+    }
+    
+    private func loadProgress() {
+        let defaults = UserDefaults.standard
+        highestUnlockedLevel = defaults.integer(forKey: "highestUnlockedLevel")
+        if let data = defaults.data(forKey: "levelHighScores"),
+           let decoded = try? JSONDecoder().decode([Int: Int].self, from: data) {
+            levelHighScores = decoded
+        }
+    }
+    
+    // ------------------------------
+    // MARK: - Reset Progress
+    // ------------------------------
+    private func resetAllProgress() {
+        highestUnlockedLevel = 0
+        levelHighScores = [:]
+        currentLevelIndex = 0
+        resetCalculatorState()
+        saveProgress()
     }
 }
