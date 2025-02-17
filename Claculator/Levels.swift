@@ -1,11 +1,8 @@
-import SwiftUI
-
 struct Level {
     let buttonMapping: [CalcButton: CalcButton]
     let targetNumber: Int
 }
 
-// Global levels array – bindings are cumulative and can be overridden.
 let gameLevels: [Level] = [
     // Level 1
     Level(
@@ -71,7 +68,7 @@ let gameLevels: [Level] = [
     Level(
         buttonMapping: [
             .two: .one,
-            .three: .add
+            .three: .five
         ],
         targetNumber: 120
     ),
@@ -79,8 +76,8 @@ let gameLevels: [Level] = [
     // Level 8
     Level(
         buttonMapping: [
-            .four: .subtract,
-            .seven: .mutliply
+            .four: .two,
+            .seven: .three
         ],
         targetNumber: 250
     ),
@@ -88,8 +85,8 @@ let gameLevels: [Level] = [
     // Level 9
     Level(
         buttonMapping: [
-            .zero: .divide,
-            .eight: .subtract
+            .zero: .five,
+            .eight: .nine
         ],
         targetNumber: 360
     ),
@@ -97,8 +94,8 @@ let gameLevels: [Level] = [
     // Level 10
     Level(
         buttonMapping: [
-            .one: .mutliply,
-            .five: .add
+            .one: .seven,
+            .five: .three
         ],
         targetNumber: 480
     ),
@@ -106,8 +103,8 @@ let gameLevels: [Level] = [
     // Level 11
     Level(
         buttonMapping: [
-            .six: .divide,
-            .nine: .add
+            .six: .eight,
+            .nine: .two
         ],
         targetNumber: 600
     ),
@@ -115,9 +112,9 @@ let gameLevels: [Level] = [
     // Level 12
     Level(
         buttonMapping: [
-            .two: .subtract,
-            .three: .divide,
-            .four: .add
+            .two: .four,
+            .three: .one,
+            .four: .seven
         ],
         targetNumber: 720
     ),
@@ -126,8 +123,8 @@ let gameLevels: [Level] = [
     Level(
         buttonMapping: [
             .seven: .zero,
-            .eight: .mutliply,
-            .nine: .subtract
+            .eight: .two,
+            .nine: .three
         ],
         targetNumber: 840
     ),
@@ -135,9 +132,9 @@ let gameLevels: [Level] = [
     // Level 14
     Level(
         buttonMapping: [
-            .one: .add,
-            .six: .mutliply,
-            .zero: .divide
+            .one: .nine,
+            .six: .four,
+            .zero: .eight
         ],
         targetNumber: 960
     ),
@@ -145,9 +142,9 @@ let gameLevels: [Level] = [
     // Level 15
     Level(
         buttonMapping: [
-            .five: .subtract,
-            .three: .add,
-            .eight: .divide
+            .five: .one,
+            .three: .two,
+            .eight: .six
         ],
         targetNumber: 1080
     ),
@@ -155,9 +152,9 @@ let gameLevels: [Level] = [
     // Level 16
     Level(
         buttonMapping: [
-            .two: .mutliply,
-            .seven: .add,
-            .four: .subtract
+            .two: .seven,
+            .seven: .zero,
+            .four: .three
         ],
         targetNumber: 1260
     ),
@@ -165,9 +162,9 @@ let gameLevels: [Level] = [
     // Level 17
     Level(
         buttonMapping: [
-            .one: .divide,
-            .nine: .mutliply,
-            .three: .subtract
+            .one: .five,
+            .nine: .six,
+            .three: .eight
         ],
         targetNumber: 1440
     ),
@@ -175,9 +172,9 @@ let gameLevels: [Level] = [
     // Level 18
     Level(
         buttonMapping: [
-            .five: .add,
-            .eight: .subtract,
-            .zero: .mutliply
+            .five: .two,
+            .eight: .four,
+            .zero: .three
         ],
         targetNumber: 1620
     ),
@@ -185,9 +182,9 @@ let gameLevels: [Level] = [
     // Level 19
     Level(
         buttonMapping: [
-            .two: .divide,
-            .four: .add,
-            .six: .subtract
+            .two: .nine,
+            .four: .five,
+            .six: .seven
         ],
         targetNumber: 1800
     ),
@@ -195,10 +192,10 @@ let gameLevels: [Level] = [
     // Level 20
     Level(
         buttonMapping: [
-            .one: .subtract,
-            .three: .divide,
-            .seven: .mutliply,
-            .nine: .add
+            .one: .eight,
+            .three: .nine,
+            .seven: .four,
+            .nine: .two
         ],
         targetNumber: 2000
     )

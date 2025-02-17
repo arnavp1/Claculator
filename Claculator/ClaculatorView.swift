@@ -31,7 +31,7 @@ enum CalcButton: String {
             return Color(UIColor(
                 red: 42/255.0,
                 green: 42/255.0,
-                blue: 44/255.0,
+                blue: 42/255.0,
                 alpha: 1
             ))
         }
@@ -43,36 +43,21 @@ enum Operation {
 }
 
 struct ClaculatorView: View {
-    
-    // ------------------------------
-    // State for arithmetic
-    // ------------------------------
     @State private var value = "0"
     @State private var runningNumber: Double = 0.0
     @State private var currentOperation: Operation = .none
-    
-    // ------------------------------
-    // Show the typed expression
-    // ------------------------------
     @State private var expression = "0"
-    
-    // ------------------------------
-    // Multi-level logic
-    // ------------------------------
     @State private var currentLevelIndex: Int = 0
     @State private var showLevelComplete: Bool = false
     @State private var movesCount: Int = 0
     @State private var levelHighScores: [Int: Int] = [:]
     @State private var showLevelSelector: Bool = false
-    
-    // These properties are now persisted
     @State private var highestUnlockedLevel: Int = 0
-    
-    // NEW: State variable to show the easter egg alert
     @State private var showEasterEggAlert: Bool = false
+    @State private var showHintSheet: Bool = false
     
-    // Levels from your external Levels.swift file
     let levels = gameLevels
+    let hints = levelHints
     
     let buttons: [[CalcButton]] = [
         [.clear, .negative, .percent, .divide],
@@ -92,7 +77,7 @@ struct ClaculatorView: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
-                    // Level Info positioned at the top:
+                    // Level Info
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Level \(currentLevelIndex + 1)")
@@ -179,11 +164,9 @@ struct ClaculatorView: View {
                         )
                     }
                 }
-
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { }
-            // The sheet for level selection, now with a reset option at the bottom.
             .sheet(isPresented: $showLevelSelector) {
                 VStack {
                     Text("Select a Level")
@@ -219,6 +202,21 @@ struct ClaculatorView: View {
                 }
                 .presentationDetents([.medium, .large])
             }
+            // Hints
+            .sheet(isPresented: $showHintSheet) {
+                VStack {
+                    Text(hints[currentLevelIndex])
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
+                    
+                    Button("Ok") {
+                        showHintSheet = false
+                    }
+                    .padding()
+                }
+                .presentationDetents([.medium, .large])
+            }
         }
         .onAppear(perform: loadProgress)
         .onChange(of: highestUnlockedLevel) { newValue, oldValue in
@@ -237,7 +235,12 @@ struct ClaculatorView: View {
             movesCount += 1
         }
         
-        // Check for easter egg: if user entered "0.0000000" and taps "="
+        if button == .negative {
+            showHintSheet = true
+            return
+        }
+        
+        // Easter Egg
         if button == .equal && value == "0.0000000" {
             highestUnlockedLevel = levels.count - 1
             resetCalculatorState()
@@ -245,11 +248,9 @@ struct ClaculatorView: View {
             return
         }
         
-        // Figure out the real (mapped) button behind the scenes
         let mapping = fullMapping(upTo: currentLevelIndex)
         let realButton = mapping[button] ?? button
         
-        // If there's already an operation active, don't allow a second one
         if [.add, .subtract, .mutliply, .divide].contains(realButton),
            currentOperation != .none {
             return
@@ -270,8 +271,6 @@ struct ClaculatorView: View {
             resetCalculatorState()
         case .percent:
             showLevelSelector = true
-        case .negative:
-            break
         default:
             updateExpression(with: button)
             if value == "0" {
