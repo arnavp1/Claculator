@@ -218,6 +218,7 @@ struct ClaculatorView: View {
                 .presentationDetents([.medium, .large])
             }
         }
+        .navigationViewStyle(.stack)
         .onAppear(perform: loadProgress)
         .onChange(of: highestUnlockedLevel) { newValue, oldValue in
             saveProgress()
