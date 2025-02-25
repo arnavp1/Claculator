@@ -67,9 +67,7 @@ struct ClaculatorView: View {
         [.zero, .decimal, .equal],
     ]
     
-    // ------------------------------
     // MARK: - Body
-    // ------------------------------
     var body: some View {
         NavigationView {
             ZStack {
@@ -77,7 +75,6 @@ struct ClaculatorView: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
-                    // Level Info
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Level \(currentLevelIndex + 1)")
@@ -105,7 +102,6 @@ struct ClaculatorView: View {
                     }
                     .padding()
                     
-                    // Expression Display
                     HStack {
                         Spacer()
                         Text(expression)
@@ -117,7 +113,6 @@ struct ClaculatorView: View {
                     }
                     .padding()
                     
-                    // Calculator Buttons
                     ForEach(buttons, id: \.self) { row in
                         HStack(spacing: 12) {
                             ForEach(row, id: \.self) { item in
@@ -188,7 +183,6 @@ struct ClaculatorView: View {
                             .foregroundColor(isLocked ? .gray : .blue)
                         }
                         
-                        // Reset Progress option
                         Button(action: {
                             resetAllProgress()
                             showLevelSelector = false
@@ -202,7 +196,6 @@ struct ClaculatorView: View {
                 }
                 .presentationDetents([.medium, .large])
             }
-            // Hints
             .sheet(isPresented: $showHintSheet) {
                 VStack {
                     Text(hints[currentLevelIndex])
@@ -228,9 +221,7 @@ struct ClaculatorView: View {
         }
     }
     
-    // ------------------------------
     // MARK: - Tap Handler
-    // ------------------------------
     func didTap(button: CalcButton) {
         if button != .negative && button != .percent {
             movesCount += 1
@@ -282,9 +273,7 @@ struct ClaculatorView: View {
         }
     }
     
-    // ------------------------------
     // MARK: - Expression Display
-    // ------------------------------
     private func updateExpression(with displayedButton: CalcButton) {
         switch displayedButton {
         case .add, .subtract, .mutliply, .divide:
@@ -314,9 +303,7 @@ struct ClaculatorView: View {
         }
     }
     
-    // ------------------------------
     // MARK: - Operation Logic
-    // ------------------------------
     private func handleOperationButton(_ button: CalcButton) {
         switch button {
         case .add:
@@ -377,9 +364,7 @@ struct ClaculatorView: View {
         }
     }
     
-    // ------------------------------
     // MARK: - Mappings & Levels
-    // ------------------------------
     private func fullMapping(upTo levelIndex: Int) -> [CalcButton: CalcButton] {
         var cumulative: [CalcButton: CalcButton] = [:]
         for i in 0...levelIndex {
@@ -425,9 +410,7 @@ struct ClaculatorView: View {
         expression = "0"
     }
     
-    // ------------------------------
     // MARK: - Button Sizes
-    // ------------------------------
     func buttonWidth(item: CalcButton) -> CGFloat {
         if item == .zero {
             return ((UIScreen.main.bounds.width - (4 * 12)) / 4) * 2
@@ -439,9 +422,7 @@ struct ClaculatorView: View {
         return (UIScreen.main.bounds.width - (5 * 12)) / 4
     }
     
-    // ------------------------------
     // MARK: - Persistence
-    // ------------------------------
     private func saveProgress() {
         let defaults = UserDefaults.standard
         defaults.set(highestUnlockedLevel, forKey: "highestUnlockedLevel")
@@ -459,9 +440,7 @@ struct ClaculatorView: View {
         }
     }
     
-    // ------------------------------
     // MARK: - Reset Progress
-    // ------------------------------
     private func resetAllProgress() {
         highestUnlockedLevel = 0
         levelHighScores = [:]
