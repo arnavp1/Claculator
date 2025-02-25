@@ -1,4 +1,3 @@
-// Hints array
 let levelHints: [String] = [
     """
     Level 1 Hint
